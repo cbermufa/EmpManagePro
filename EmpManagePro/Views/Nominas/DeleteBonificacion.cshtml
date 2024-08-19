@@ -1,0 +1,33 @@
+﻿@model EmpManagePro.Models.Bonificacion
+
+@{
+    ViewData["Title"] = "Eliminar Bonificación";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>¿Estás seguro que deseas eliminar esta bonificación?</h3>
+<div>
+    <h4>@Model.Nombre</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nombre
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Nombre
+        </dd>
+        <dt class="col-sm-2">
+            Monto
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Monto
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteBonificacionConfirmed">
+        <input type="hidden" name="id" value="@Model.BonificacionID" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="GestionarBonificaciones" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

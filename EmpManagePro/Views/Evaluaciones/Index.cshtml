@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EmpManagePro.Models.EvaluacionRendimiento>
+
+@{
+    ViewBag.Title = "Evaluaciones de Rendimiento";
+}
+
+<h2>Evaluaciones de Rendimiento</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Crear Nueva Evaluación</a>
+    </p>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Empleado</th>
+            @* <th>Objetivos</th> *@
+            @* <th>Seguimiento</th> *@
+            @* <th>Retroalimentación</th> *@
+            <th>Fecha de Reunión</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evaluacion in Model)
+        {
+            <tr>
+                <td>@evaluacion.Empleado?.Nombre</td>
+                @* <td>@evaluacion.Objetivos</td> *@
+                @* <td>@evaluacion.Seguimiento</td> *@
+                @* <td>@evaluacion.Retroalimentacion</td> *@
+                <td>@evaluacion.FechaReunion.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@evaluacion.EvaluacionID" class="btn btn-info">Ver Detalles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

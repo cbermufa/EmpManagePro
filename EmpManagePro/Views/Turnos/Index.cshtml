@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EmpManagePro.Models.Turno>
+
+@{
+    ViewData["Title"] = "Gestión de Turnos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoTurno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasSeleccionados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CantHoras)
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoTurno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasSeleccionados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraEntrada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoraSalida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CantHoras)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TurnoID" class="btn btn-secondary">Editar</a> |
+                    <a asp-action="Assign" asp-route-id="@item.TurnoID" class="btn btn-info">Asignar Empleados</a> |
+                    <a asp-action="VerEmpleadosAsignados" asp-route-id="@item.TurnoID" class="btn btn-info">Ver Empleados Asignados</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TurnoID" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

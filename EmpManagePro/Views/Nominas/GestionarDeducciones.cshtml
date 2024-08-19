@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EmpManagePro.Models.Deduccion>
+
+@{
+    ViewData["Title"] = "Gestionar Deducciones";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Lista de Deducciones</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Porcentaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var deduccion in Model)
+                {
+                    <tr>
+                        <td>@deduccion.Nombre</td>
+                        <td>@deduccion.Porcentaje</td>
+                        <td>
+                            <a asp-action="EditDeduccion" asp-route-id="@deduccion.DeduccionID" class="btn btn-secondary">Editar</a> |
+                            <a asp-action="DeleteDeduccion" asp-route-id="@deduccion.DeduccionID" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h3>Crear Nueva Deducción</h3>
+        @using (Html.BeginForm("CreateDeduccion", "Nominas", FormMethod.Post, new { id = "formCreaDeduccion", @class = "classFormCrearNominas" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(model => model.First().Nombre, "Nombre de la Deducción", new { @class = "control-label" })
+                @Html.TextBox("Nombre", null, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.First().Porcentaje, "Porcentaje", new { @class = "control-label" })
+                @Html.TextBox("Porcentaje", null, new { @class = "form-control", type = "number", step = "0.01" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear Deducción" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>

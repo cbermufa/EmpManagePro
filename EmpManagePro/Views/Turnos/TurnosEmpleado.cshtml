@@ -1,0 +1,25 @@
+﻿@model IEnumerable<EmpManagePro.Models.Turno>
+
+<h2>Mis Turnos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tipo de Turno</th>
+            <th>Hora de Entrada</th>
+            <th>Hora de Salida</th>
+            <th>Días Asignados</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var turno in Model)
+        {
+            <tr>
+                <td>@turno.TipoTurno</td>
+                <td>@turno.HoraEntrada</td>
+                <td>@turno.HoraSalida</td>
+                <td>@turno.DiasSeleccionados</td>
+            </tr>
+        }
+    </tbody>
+</table>

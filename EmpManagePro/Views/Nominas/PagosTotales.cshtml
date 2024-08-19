@@ -1,0 +1,29 @@
+﻿@model IEnumerable<EmpManagePro.ViewModels.PagoAgrupadoViewModel>
+
+@{
+    ViewData["Title"] = "Pagos Totales";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha de Pago</th>
+            <th>Total Pagado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grupo in Model)
+        {
+            <tr>
+                <td>@grupo.FechaPago.ToString("dd/MM/yyyy")</td>
+                <td>@grupo.TotalPagado</td>
+                <td>
+                    <a href="@Url.Action("DetallesPorFecha", "Nominas", new { fechaPago = grupo.FechaPago.ToString("yyyy-MM-dd") })" class="btn btn-info">Ver Más</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,205 @@
+﻿@model EmpManagePro.Models.Empleado
+
+
+@{
+    ViewData["Title"] = "Perfil de Empleado";
+    var isAdmin = User.IsInRole("Admin");
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm("Profile", "Empleados", FormMethod.Post, new { id = Model.EmpleadoID, @class = "formProfile"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Empleado</h4>
+        <hr />
+
+        <!-- EmpleadoID -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmpleadoID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.EmpleadoID)
+                @Html.HiddenFor(model => model.EmpleadoID)
+            </div>
+        </div>
+
+        <!-- Nombre -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (isAdmin)
+                {
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", id = "nombre" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Nombre)
+                }
+            </div>
+        </div>
+
+        <!-- Direccion -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (isAdmin)
+                {
+                    @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", id = "direccion" } })
+                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Direccion)
+                }
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (isAdmin)
+                {
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Email)
+                }
+            </div>
+        </div>
+
+        <!-- Telefono -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (isAdmin)
+                {
+                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", id = "telefono" } })
+                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Telefono)
+                }
+            </div>
+        </div>
+
+        <!-- FechaContratacion -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaContratacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (isAdmin)
+                {
+                    @Html.EditorFor(model => model.FechaContratacion, new { htmlAttributes = new { @class = "form-control", id = "fechaContratacion" } })
+                    @Html.ValidationMessageFor(model => model.FechaContratacion, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.FechaContratacion)
+                }
+            </div>
+        </div>
+
+        <!-- Rol -->
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.Role.Name, "Rol", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (isAdmin)
+                {
+                    @Html.DropDownListFor(model => model.RoleId, (SelectList)ViewBag.Roles, "Seleccione un rol", new { @class = "form-control", id = "rol" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Role.Name)
+
+                }
+            </div>
+        </div>
+
+        <!-- Puesto -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.PuestoID, "Puesto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PuestoID, (SelectList)ViewBag.Puestos, "Seleccione un puesto", new { @class = "form-control", id = "puesto" })
+                @Html.ValidationMessageFor(model => model.PuestoID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <!-- Deducciones -->
+        <div class="form-group">
+            @Html.Label("Deducciones", "Deducciones", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var item in (List<SelectListItem>)ViewBag.Deducciones)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="selectedDeducciones" value="@item.Value" @(item.Selected ? "checked" : "") />
+                            @item.Text
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Bonificaciones -->
+        <div class="form-group">
+            @Html.Label("Bonificaciones", "Bonificaciones", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var item in (List<SelectListItem>)ViewBag.Bonificaciones)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="selectedBonificaciones" value="@item.Value" @(item.Selected ? "checked" : "") />
+                            @item.Text
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+        <!-- Botón Guardar solo para Admin -->
+        @if (isAdmin)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Editar" class="btn btn-primary" id="crearBtn" />
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts {
+    <!-- Incluir jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Incluir jQuery Validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <!-- Incluir el archivo de traducción al español -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_es.min.js"></script>
+    <!-- Incluir jQuery Validate Unobtrusive -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/js/validacionesEditar.js"></script>
+}

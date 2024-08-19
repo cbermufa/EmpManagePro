@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EmpManagePro.Models.EvaluacionRendimiento>
+
+@{
+    ViewBag.Title = "Mis Evaluaciones de Rendimiento";
+}
+
+<h2>Mis Evaluaciones de Rendimiento</h2>
+
+@if (!Model.Any())
+{
+    <p>No tienes evaluaciones de rendimiento disponibles.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Objetivos</th>
+                <th>Seguimiento</th>
+                <th>Retroalimentación</th>
+                <th>Fecha de Reunión</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var evaluacion in Model)
+            {
+                <tr>
+                    <td>@evaluacion.Objetivos</td>
+                    <td>@evaluacion.Seguimiento</td>
+                    <td>@evaluacion.Retroalimentacion</td>
+                    <td>@evaluacion.FechaReunion.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@evaluacion.EvaluacionID" class="btn btn-info">Ver Detalles</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

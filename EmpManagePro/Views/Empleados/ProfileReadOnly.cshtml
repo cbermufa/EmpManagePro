@@ -1,0 +1,63 @@
+﻿@model EmpManagePro.Models.Empleado
+
+<h2>Mi Perfil</h2>
+
+<div class="form-group">
+    <label>Nombre:</label>
+    <p class="form-control-static">@Model.Nombre</p>
+</div>
+
+<div class="form-group">
+    <label>Email:</label>
+    <p class="form-control-static">@Model.Email</p>
+</div>
+
+<div class="form-group">
+    <label>Teléfono:</label>
+    <p class="form-control-static">@Model.Telefono</p>
+</div>
+
+<div class="form-group">
+    <label>Dirección:</label>
+    <p class="form-control-static">@Model.Direccion</p>
+</div>
+
+<div class="form-group">
+    <label>Puesto:</label>
+    <p class="form-control-static">@Model.Puesto.Nombre</p>
+</div>
+
+<h3>Turnos Asignados</h3>
+
+@if (Model.Turnos != null && Model.Turnos.Any())
+{
+    <ul>
+        @foreach (var turnoEmpleado in Model.Turnos)
+        {
+            <div class="form-group">
+                <p class="form-control-static">@turnoEmpleado.Turno.TipoTurno</p>
+            </div>
+        }
+    </ul>
+}
+else
+{
+    <p>Sin turno asignado</p>
+}
+
+<h3>Deducciones</h3>
+@foreach (var deduccion in Model.EmpleadoDeduc)
+{
+    <div class="form-group">
+        <p class="form-control-static">@deduccion.Deduccion.Nombre - @deduccion.Deduccion.Porcentaje%</p>
+    </div>
+}
+
+<h3>Bonificaciones</h3>
+@foreach (var bonificacion in Model.EmpleadoBonif)
+{
+    <div class="form-group">
+        <p class="form-control-static">@bonificacion.Bonificacion.Nombre - @bonificacion.Bonificacion.Monto</p>
+    </div>
+}
+

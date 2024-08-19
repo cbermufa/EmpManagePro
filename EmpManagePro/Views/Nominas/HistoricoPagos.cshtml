@@ -1,0 +1,27 @@
+﻿@model IEnumerable<EmpManagePro.Models.Pago>
+
+<h2>Historial de Pagos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha de Pago</th>
+            <th>Salario Base</th>
+            <th>Total Bonificaciones</th>
+            <th>Total Deducciones</th>
+            <th>Salario Neto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pago in Model)
+        {
+            <tr>
+                <td>@pago.FechaPago.ToShortDateString()</td>
+                <td>@pago.SalarioBase</td>
+                <td>@pago.TotalBonificaciones</td>
+                <td>@pago.TotalDeducciones</td>
+                <td>@pago.SalarioNeto</td>
+            </tr>
+        }
+    </tbody>
+</table>

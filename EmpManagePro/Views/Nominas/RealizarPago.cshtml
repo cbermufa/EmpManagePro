@@ -1,0 +1,22 @@
+﻿@model IEnumerable<EmpManagePro.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Realizar Pago";
+}
+
+<h2>Realizar Pago</h2>
+
+<form asp-action="RealizarPago" method="post">
+    <div class="form-group">
+        <label for="empleadoId">Seleccione un empleado</label>
+        <select name="empleadoId" id="empleadoId" class="form-control">
+            @foreach (var empleado in Model)
+            {
+                <option value="@empleado.EmpleadoID">@empleado.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Realizar Pago</button>
+    </div>
+</form>

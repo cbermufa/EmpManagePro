@@ -1,0 +1,174 @@
+﻿@model EmpManagePro.Models.Empleado
+
+@{
+    ViewData["Title"] = "Registro de Empleados"; // Configuro el título de la página
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm(new { id = "crearEmpleadoForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="EmpleadoID">
+                @Html.DisplayNameFor(model => model.EmpleadoID)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.EmpleadoID, new { htmlAttributes = new { @class = "form-control", id = "empleadoID", placeholder = "0-1234-5678", maxlength = "11" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="nombre">
+                @Html.DisplayNameFor(model => model.Nombre)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", id = "nombre", minlength = "3", maxlength = "50" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="direccion">
+                @Html.DisplayNameFor(model => model.Direccion)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", id = "direccion", minlength = "10", maxlength = "100" } })
+                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="email">
+                @Html.DisplayNameFor(model => model.Email)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", id = "email", placeholder = "email@email.com" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="telefono">
+                @Html.DisplayNameFor(model => model.Telefono)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", id = "telefono", placeholder = "XXXX-XXXX" } })
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="fechaContratacion">
+                @Html.DisplayNameFor(model => model.FechaContratacion)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaContratacion, new { htmlAttributes = new { @class = "form-control", id = "fechaContratacion" } })
+                @Html.ValidationMessageFor(model => model.FechaContratacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="rol">
+                @Html.DisplayNameFor(model => model.RoleId)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RoleId, (SelectList)ViewBag.Roles, "Seleccione un rol", new { @class = "form-control", id = "rol" })
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="PuestoID">
+                @Html.DisplayNameFor(model => model.PuestoID)
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PuestoID, (SelectList)ViewBag.Puestos, "Seleccione un puesto", new { @class = "form-control", id = "PuestoID" })
+                @Html.ValidationMessageFor(model => model.PuestoID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Deducciones", "Deducciones", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var item in ViewBag.Deducciones as IEnumerable<SelectListItem>)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="DeduccionesID" value="@item.Value" />
+                            @item.Text
+                        </label>
+                    </div>
+                }
+                @Html.ValidationMessage("DeduccionesID", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Bonificaciones", "Bonificaciones", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @foreach (var item in ViewBag.Bonificaciones as IEnumerable<SelectListItem>)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="BonificacionesID" value="@item.Value" />
+                            @item.Text
+                        </label>
+                    </div>
+                }
+                @Html.ValidationMessage("BonificacionesID", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Password">
+                Contraseña
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "password", placeholder = "Ingrese la contraseña" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ConfirmPassword">
+                Confirmar Contraseña
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", id = "confirmPassword", placeholder = "Confirme la contraseña" })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-primary" id="crearBtn" disabled />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <!-- Incluir jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Incluir jQuery Validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <!-- Incluir el archivo de traducción al español -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_es.min.js"></script>
+    <!-- Incluir jQuery Validate Unobtrusive -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/js/validaciones.js"></script>
+}

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EmpManagePro.Models.Pago>
+
+@{
+    ViewData["Title"] = "Detalles de Pagos por Fecha";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Empleado</th>
+            <th>Salario Base</th>
+            <th>Total Bonificaciones</th>
+            <th>Total Deducciones</th>
+            <th>Salario Neto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pago in Model)
+        {
+            <tr>
+                <td>@pago.Empleado.Nombre</td>
+                <td>@pago.SalarioBase</td>
+                <td>@pago.TotalBonificaciones</td>
+                <td>@pago.TotalDeducciones</td>
+                <td>@pago.SalarioNeto</td>
+            </tr>
+        }
+    </tbody>
+</table>

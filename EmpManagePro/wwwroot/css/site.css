@@ -1,0 +1,193 @@
+:root {
+    --color-header-footer: #343a40;
+    --color-dorado: #FFD700;
+    --color-blanco: #FFFFFF;
+    --color-gris-oscuro: #2F4F4F;
+    --color-verde-esmeralda: #50C878;
+    --box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    margin-bottom: 1.5rem !important;
+}
+
+.col-md-6 {
+    text-align: center;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    /* background-color: var(--color-background-body); */
+    background-color: var(--color-blanco);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    background: #efefef;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+}
+
+header, footer {
+    background: var(--color-header-footer);
+}
+
+header a, footer a {
+    color: var(--color-blanco) !important;
+}
+
+header .dropdown-menu a {
+    color: var(--color-header-footer) !important;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+
+button:disabled,
+button[disabled] {
+    border: 1px solid #999999; /* Borde gris */
+    background-color: darkgrey; /* Fondo gris oscuro */
+    color: #ffffff; /* Texto blanco */
+    padding: 10px; /* Relleno */
+    cursor: not-allowed; /* Cursor de no permitido */
+    opacity: 0.65; /* Opacidad reducida */
+    /*filter: ;*/ /* Filtro de opacidad para IE */
+    -webkit-box-shadow: none; /* Sin sombra en WebKit */
+    box-shadow: none; /* Sin sombra */
+}
+
+main .centrado {
+    position: relative;
+    background: #fff;
+    padding: 30px 20px;
+    height: 0px 10px;
+}
+
+.centrado {
+    width: 85%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    
+}
+
+.centrado h2 {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.alert {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+form {
+    margin: 0 auto !important;
+    /*width: 30%;*/
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 5px 10px 0px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 5px;
+    padding: 5px 10px;
+}
+
+.form-group label{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.table {
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+}
+
+
+.listaGestiones {
+    flex-direction: unset;
+    justify-content: center;
+}
+
+.listaGestiones .list-group-item {
+    border: none;
+}
+
+form.classFormCrearNominas {
+    width: 50%;
+}
+
+form#formCreateTurno {
+    width: 35%;
+}
+
+.containerEntradaSalida {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.containerEntradaSalida .form-group .col-md-10 {
+    width: 100%;
+}
+
+.checkboxesDias .col-md-10 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.form-group.cantidadHorasATrabajar input {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+form#formCreateTurno label {
+    margin-bottom: 0.9rem;
+}
+
+

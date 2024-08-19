@@ -1,0 +1,27 @@
+﻿@model EmpManagePro.Models.TurnoViewModel
+
+@{
+    ViewData["Title"] = "Asignar Empleados";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>@Model.TipoTurno - @string.Join(", ", Model.DiasSeleccionados) - (@Model.HoraEntrada.ToString(@"hh\:mm") - @Model.HoraSalida.ToString(@"hh\:mm"))</h4>
+
+@using (Html.BeginForm("Assign", "Turnos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="empleadoID" class="control-label col-md-2">Empleado</label>
+            <div class="col-md-10">
+                @Html.DropDownList("empleadoID", (SelectList)ViewBag.Empleados, "Seleccione un empleado", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Asignar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

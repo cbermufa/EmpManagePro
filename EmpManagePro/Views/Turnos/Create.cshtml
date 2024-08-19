@@ -1,0 +1,87 @@
+﻿@model EmpManagePro.Models.TurnoViewModel
+
+@{
+    ViewData["Title"] = "Crear Turno";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@using (Html.BeginForm("CreateTurno", "Turnos", FormMethod.Post, new { @class = "form-horizontal", id ="formCreateTurno" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group tipoTurno">
+        @Html.LabelFor(model => model.TipoTurno, "Tipo de Turno", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.TipoTurno, new { @class = "form-control", placeholder = "Ej. Diurno, Nocturno, etc.", id = "tipoTurno" })
+            @Html.ValidationMessageFor(model => model.TipoTurno, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group cantidadHorasATrabajar">
+        @Html.LabelFor(model => model.CantHoras, "Cantidad de Horas", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CantHoras, new { @class = "form-control", type = "number", min = "1", max = "72", id = "CantidadHoras" })
+            @Html.ValidationMessageFor(model => model.CantHoras, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group checkboxesDias">
+        <label class="control-label col-md-2">Días de la Semana</label>
+        <div class="col-md-10">
+            <label class="checkbox-inline">
+                <input type="checkbox" name="DiasSeleccionados" value="Lunes" class="dia-semana"> Lunes
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="DiasSeleccionados" value="Martes" class="dia-semana"> Martes
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="DiasSeleccionados" value="Miércoles" class="dia-semana"> Miércoles
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="DiasSeleccionados" value="Jueves" class="dia-semana"> Jueves
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="DiasSeleccionados" value="Viernes" class="dia-semana"> Viernes
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="DiasSeleccionados" value="Sábado" class="dia-semana"> Sábado
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="DiasSeleccionados" value="Domingo" class="dia-semana"> Domingo
+            </label>
+            @Html.ValidationMessageFor(model => model.DiasSeleccionados, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="containerEntradaSalida">
+        <div class="form-group horaEntrada">
+            @Html.LabelFor(model => model.HoraEntrada, "Hora de Entrada", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.HoraEntrada, new { @class = "form-control", type = "time", id = "horaEntrada" })
+                @Html.ValidationMessageFor(model => model.HoraEntrada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group horaSalida">
+            @Html.LabelFor(model => model.HoraSalida, "Hora de Salida", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.HoraSalida, new { @class = "form-control", type = "time", id = "horaSalida", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.HoraSalida, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <div class="form-group formGroupCrearTurno">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear Turno" class="btn btn-primary" id="crearTurnoBtn" disabled />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/turnos.js"></script>
+}

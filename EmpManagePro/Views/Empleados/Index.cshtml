@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EmpManagePro.Models.EmpleadoViewModel>
+@{
+    ViewData["Title"] = "Gestión de Perfiles de Empleados"; // Configuro el título de la página
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Aquí va el contenido para listar los empleados -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            @* <th>Dirección</th> *@
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Fecha de Contratación</th>
+            <th>Rol</th>
+            <th>Puesto</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var empleado in Model)
+        {
+            <tr>
+                <td>@empleado.Nombre</td>
+                @* <td>@empleado.Direccion</td> *@
+                <td>@empleado.Email</td>
+                <td>@empleado.Telefono</td>
+                <td>@empleado.FechaContratacion.ToString("dd/MM/yyyy")</td>
+                <td>@empleado.RoleName</td>
+                <td>@empleado.Puesto</td>
+                <td>
+                    <a href="@Url.Action("Profile", "Empleados", new { id = empleado.EmpleadoID, isSelf = false })" class="btn btn-primary">Editar</a>
+                    <a href="@Url.Action("Delete", "Empleados", new { id = empleado.EmpleadoID })" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

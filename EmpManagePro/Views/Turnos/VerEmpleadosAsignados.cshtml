@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EmpManagePro.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Empleados Asignados";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpleadoID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var empleado in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => empleado.EmpleadoID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => empleado.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => empleado.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => empleado.Telefono)
+                </td>
+                <td>
+                    <form asp-action="EliminarEmpleadoDelTurno" method="post" style="display:inline;">
+                        <input type="hidden" name="empleadoID" value="@empleado.EmpleadoID" />
+                        <input type="hidden" name="turnoID" value="@ViewBag.TurnoID" />
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Volver a la Lista de Turnos</a>

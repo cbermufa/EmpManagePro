@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - EmpManagePro</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <div class="centrado">
+                @{
+                    await Html.RenderPartialAsync("_Menu");
+                }
+            </div>
+        }
+        
+    </header>
+
+    <main>
+        <div class="centrado">
+            @RenderBody()
+        </div>
+    </main>
+    
+    <footer>
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <div class="centrado">
+                @{
+                    await Html.RenderPartialAsync("_Footer");
+                }
+            </div>
+        }
+    </footer>
+    
+
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

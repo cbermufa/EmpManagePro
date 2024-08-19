@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EmpManagePro.Models.Bonificacion>
+
+@{
+    ViewData["Title"] = "Gestionar Bonificaciones";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Lista de Bonificaciones</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bonificacion in Model)
+                {
+                    <tr>
+                        <td>@bonificacion.Nombre</td>
+                        <td>@bonificacion.Monto</td>
+                        <td>
+                            <a asp-action="EditBonificacion" asp-route-id="@bonificacion.BonificacionID" class="btn btn-secondary">Editar</a> |
+                            <a asp-action="DeleteBonificacion" asp-route-id="@bonificacion.BonificacionID" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h3>Crear Nueva Bonificación</h3>
+        @using (Html.BeginForm("CreateBonificacion", "Nominas", FormMethod.Post, new { id = "formCrearBonificacion", @class = "classFormCrearNominas" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(model => model.First().Nombre, "Nombre de la Bonificación", new { @class = "control-label" })
+                @Html.TextBox("Nombre", null, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.First().Monto, "Monto", new { @class = "control-label" })
+                @Html.TextBox("Monto", null, new { @class = "form-control", type = "number", step = "0.01" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear Bonificación" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model EmpManagePro.Models.EvaluacionRendimiento
+
+@{
+    ViewData["Title"] = "Detalles de Evaluación";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Objetivos</h4>
+    <p>@Model.Objetivos</p>
+</div>
+
+<div>
+    <h4>Seguimiento</h4>
+    <p>@Model.Seguimiento</p>
+</div>
+
+<div>
+    <h4>Retroalimentación</h4>
+    <p>@Model.Retroalimentacion</p>
+</div>
+
+<div>
+    <h4>Fecha de Reunión</h4>
+    <p>@Model.FechaReunion.ToString("dd/MM/yyyy")</p>
+</div>

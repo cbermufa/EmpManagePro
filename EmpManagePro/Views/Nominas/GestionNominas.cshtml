@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Gestión de Nóminas";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-group listaGestiones">
+                <li class="list-group-item">
+                    <a href="@Url.Action("GestionarPuestos", "Nominas")" class="btn btn-primary btn-block">Gestionar Puestos</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="@Url.Action("GestionarDeducciones", "Nominas")" class="btn btn-primary btn-block">Gestionar Deducciones</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="@Url.Action("GestionarBonificaciones", "Nominas")" class="btn btn-primary btn-block">Gestionar Bonificaciones</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="@Url.Action("RealizarPago", "Nominas")" class="btn btn-primary btn-block">Realizar Pago</a>
+                </li>
+                @* <li class="list-group-item">
+                    <a href="@Url.Action("InformesNomina", "Nominas")" class="btn btn-primary btn-block">Informes de la Nómina</a>
+                </li> *@
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // 
+    </script>
+}

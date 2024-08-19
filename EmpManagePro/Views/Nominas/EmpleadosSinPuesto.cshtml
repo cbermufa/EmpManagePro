@@ -1,0 +1,23 @@
+﻿@model IEnumerable<EmpManagePro.Models.Empleado>
+
+<h2>Empleados Sin Puesto</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID del Empleado</th>
+            <th>Nombre</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var empleado in Model)
+        {
+            <tr>
+                <td>@empleado.EmpleadoID</td>
+                <td>@empleado.Nombre</td>
+                <td>@empleado.User.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>

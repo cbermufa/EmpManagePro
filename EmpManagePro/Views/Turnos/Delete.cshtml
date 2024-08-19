@@ -1,0 +1,42 @@
+﻿@model EmpManagePro.Models.Turno
+
+@{
+    ViewData["Title"] = "Eliminar Turno";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>¿Estás seguro de que deseas eliminar este turno?</h3>
+<div>
+    <h4>Turno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HoraEntrada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraSalida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HoraSalida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoTurno)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoTurno)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-default">Cancelar</a>
+        </div>
+    }
+</div>
